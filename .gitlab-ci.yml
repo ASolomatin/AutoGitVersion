@@ -11,5 +11,9 @@ tests:
   except:
     - tags
 
+  before_script:
+    - 'git config --global user.email "runner@example.com"'
+    - 'git config --global user.name "CI Runner"'
+
   script:
     - './tests.sh'
