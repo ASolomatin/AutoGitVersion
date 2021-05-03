@@ -1,0 +1,18 @@
+{
+    "cSpell.ignorePaths": [
+        "**/vscode-extension/**",
+        "**/.git/objects/**",
+        ".vscode",
+        ".vscode-insiders",
+        "shunit2",
+        "USAGE.md"
+    ],
+    "cSpell.words": [
+        "nuget",
+        "nupkg",
+        "semver"
+    ],
+    "shellcheck.ignorePatterns": {
+        "shunit2": true
+    }
+}

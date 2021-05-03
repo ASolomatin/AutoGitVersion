@@ -1,0 +1,15 @@
+stages:
+  - test
+
+tests:
+  stage: test
+  only:
+    - branches
+    - merge_requests
+    - pushes
+
+  except:
+    - tags
+
+  script:
+    - './tests.sh'
