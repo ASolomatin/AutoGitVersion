@@ -3,6 +3,7 @@ stages:
 
 tests:
   stage: test
+  tags: ['dev']
   only:
     - branches
     - merge_requests
@@ -17,3 +18,5 @@ tests:
 
   script:
     - './tests.sh'
+
+#test push
