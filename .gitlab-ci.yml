@@ -3,6 +3,7 @@ stages:
 
 tests:
   stage: test
+  tags: ['dev']
   only:
     - branches
     - merge_requests
