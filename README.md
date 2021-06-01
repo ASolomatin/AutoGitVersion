@@ -69,13 +69,13 @@ $ git checkout staging
 Switched to branch 'staging'
 
 $ ./version.sh
-v0.0.0-beta
+0.0.0-beta
 
 $ git checkout production
 Switched to branch 'production'
 
 $ ./version.sh
-v0.0.0
+0.0.0
 ```
 
 ### Simple commit
@@ -88,7 +88,7 @@ $ git commit --allow-empty -m SimpleCommit1
 [master 38b49c3] SimpleCommit1
 
 $ ./version.sh
-v0.1.0-alpha.2
+0.1.0-alpha.2
 ```
 
 ### Feature
@@ -98,25 +98,25 @@ $ git checkout -b feature/DummyFeature
 Switched to a new branch 'feature/DummyFeature'
 
 $ ./version.sh
-v0.1.0-feature_DummyFeature.2
+0.1.0-feature.DummyFeature.2
 
 $ git commit --allow-empty -m FeatureCommit1
 [feature/DummyFeature ff699aa] FeatureCommit1
 
 $ ./version.sh
-v0.1.0-feature_DummyFeature.3
+0.1.0-feature.DummyFeature.3
 
 $ git checkout master
 Switched to branch 'master'
 
 $ ./version.sh
-v0.1.0-alpha.2
+0.1.0-alpha.2
 
 $ git commit --allow-empty -m SimpleCommit2
 [master 8c40b1a] SimpleCommit2
 
 $ ./version.sh
-v0.1.0-alpha.3
+0.1.0-alpha.3
 
 $ git merge feature/DummyFeature --no-ff --no-edit
 Already up to date!
@@ -126,7 +126,7 @@ $ git branch -d feature/DummyFeature
 Deleted branch feature/DummyFeature (was ff699aa).
 
 $ ./version.sh
-v0.1.0-alpha.5
+0.1.0-alpha.5
 ```
 
 ### Major commit
@@ -136,7 +136,7 @@ $ git commit --allow-empty -m MajorCommit1 -m "+semver: major"
 [master e2559be] MajorCommit1
 
 $ ./version.sh
-v1.0.0-alpha.0
+1.0.0-alpha.0
 ```
 
 ### Release on stage
@@ -146,20 +146,20 @@ $ git checkout staging
 Switched to branch 'staging'
 
 $ ./version.sh
-v0.0.0-beta
+0.0.0-beta
 
 $ git merge master --no-ff --no-edit
 Already up to date!
 Merge made by the 'recursive' strategy.
 
 $ ./version.sh
-v1.0.0-beta
+1.0.0-beta
 
 $ git checkout master
 Switched to branch 'master'
 
 $ ./version.sh
-v1.1.0-alpha.0
+1.1.0-alpha.0
 ```
 
 ### Hotfix on stage
@@ -169,32 +169,32 @@ $ git commit --allow-empty -m SimpleCommit3
 [master d71b172] SimpleCommit3
 
 $ ./version.sh
-v1.1.0-alpha.1
+1.1.0-alpha.1
 
 $ git commit --allow-empty -m HotfixCommit1
 [master 0f751dc] HotfixCommit1
 
 $ ./version.sh
-v1.1.0-alpha.2
+1.1.0-alpha.2
 
 $ git commit --allow-empty -m SimpleCommit4
 [master d86c9d9] SimpleCommit4
 
 $ ./version.sh
-v1.1.0-alpha.3
+1.1.0-alpha.3
 
 $ git checkout staging
 Switched to branch 'staging'
 
 $ ./version.sh
-v1.0.0-beta
+1.0.0-beta
 
 $ git cherry-pick 0f751dc --allow-empty --no-edit
 [staging 074ddfd] HotfixCommit1
  Date: Mon May 3 02:05:06 2021 +0300
 
 $ ./version.sh
-v1.0.1-beta
+1.0.1-beta
 ```
 
 ### Release on production
@@ -204,14 +204,14 @@ $ git checkout production
 Switched to branch 'production'
 
 $ ./version.sh
-v0.0.0
+0.0.0
 
 $ git merge staging --no-ff --no-edit
 Already up to date!
 Merge made by the 'recursive' strategy.
 
 $ ./version.sh
-v1.0.1
+1.0.1
 ```
 
 

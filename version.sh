@@ -267,21 +267,21 @@ format_version() {
     case $branch in
 
     "$DEVELOPMENT_BRANCH")
-        echo "v${vMajor}.${vMinor}.${vPatch}-alpha.${vBuild}"
+        echo "${vMajor}.${vMinor}.${vPatch}-alpha.${vBuild}"
         ;;
 
     "$STAGING_BRANCH")
-        echo "v${vMajor}.${vMinor}.${vPatch}-beta"
+        echo "${vMajor}.${vMinor}.${vPatch}-beta"
         ;;
 
     "$PRODUCTION_BRANCH")
-        echo "v${vMajor}.${vMinor}.${vPatch}"
+        echo "${vMajor}.${vMinor}.${vPatch}"
         ;;
 
     *)
         local feature_name
-        feature_name=$(echo "$branch" | sed -r 's/[^a-zA-Z0-9]+/_/g')
-        echo "v${vMajor}.${vMinor}.${vPatch}-${feature_name}.${vBuild}"
+        feature_name=$(echo "$branch" | sed -r 's/[^a-zA-Z0-9]+/./g')
+        echo "${vMajor}.${vMinor}.${vPatch}-${feature_name}.${vBuild}"
         ;;
     esac
 }
