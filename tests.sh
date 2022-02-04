@@ -25,7 +25,7 @@ tearDown() {
 }
 
 version() {
-    eval "${current_directory}/version.sh"
+    eval "${current_directory}/git-version"
 }
 
 testInitial() {
@@ -306,4 +306,4 @@ testHotfixOnProduction() {
 export SHUNIT_PARENT
 SHUNIT_PARENT=$(readlink -f "$0")
 # shellcheck disable=SC1091
-. "./shunit2"
+. "shunit2"

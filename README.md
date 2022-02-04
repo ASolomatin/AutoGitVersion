@@ -2,7 +2,7 @@
 
 ## Install
 
-Just copy and use `version.sh` script inside the git directory.
+Just copy and use `git-version` script inside the git directory.
 
 ## Flow
 
@@ -36,7 +36,7 @@ Major version can be incremented by adding special comment to commit message: `+
 ### No git repository
 
 ```bash
-$ ./version.sh
+$ ./git-version
 HEAD is detached
 ```
 
@@ -55,12 +55,12 @@ Initialized empty Git repository in /home/alex/Projects/DummyTests/DummyCILib/.g
  create mode 100644 USAGE.md
  create mode 100755 shunit2
  create mode 100755 tests.sh
- create mode 100755 version.sh
+ create mode 100755 git-version
 Switched to a new branch 'staging'
 Switched to a new branch 'production'
 Switched to branch 'main'
 
-$ ./version.sh
+$ ./git-version
 v0.1.0-alpha.1
 ```
 
@@ -70,13 +70,13 @@ v0.1.0-alpha.1
 $ git checkout staging
 Switched to branch 'staging'
 
-$ ./version.sh
+$ ./git-version
 0.0.0-beta
 
 $ git checkout production
 Switched to branch 'production'
 
-$ ./version.sh
+$ ./git-version
 0.0.0
 ```
 
@@ -89,7 +89,7 @@ Switched to branch 'main'
 $ git commit --allow-empty -m SimpleCommit1
 [main 38b49c3] SimpleCommit1
 
-$ ./version.sh
+$ ./git-version
 0.1.0-alpha.2
 ```
 
@@ -99,25 +99,25 @@ $ ./version.sh
 $ git checkout -b feature/DummyFeature
 Switched to a new branch 'feature/DummyFeature'
 
-$ ./version.sh
+$ ./git-version
 0.1.0-feature.DummyFeature.2
 
 $ git commit --allow-empty -m FeatureCommit1
 [feature/DummyFeature ff699aa] FeatureCommit1
 
-$ ./version.sh
+$ ./git-version
 0.1.0-feature.DummyFeature.3
 
 $ git checkout main
 Switched to branch 'main'
 
-$ ./version.sh
+$ ./git-version
 0.1.0-alpha.2
 
 $ git commit --allow-empty -m SimpleCommit2
 [main 8c40b1a] SimpleCommit2
 
-$ ./version.sh
+$ ./git-version
 0.1.0-alpha.3
 
 $ git merge feature/DummyFeature --no-ff --no-edit
@@ -127,7 +127,7 @@ Merge made by the 'recursive' strategy.
 $ git branch -d feature/DummyFeature
 Deleted branch feature/DummyFeature (was ff699aa).
 
-$ ./version.sh
+$ ./git-version
 0.1.0-alpha.5
 ```
 
@@ -137,7 +137,7 @@ $ ./version.sh
 $ git commit --allow-empty -m MajorCommit1 -m "+semver: major"
 [main e2559be] MajorCommit1
 
-$ ./version.sh
+$ ./git-version
 1.0.0-alpha.0
 ```
 
@@ -147,20 +147,20 @@ $ ./version.sh
 $ git checkout staging
 Switched to branch 'staging'
 
-$ ./version.sh
+$ ./git-version
 0.0.0-beta
 
 $ git merge main --no-ff --no-edit
 Already up to date!
 Merge made by the 'recursive' strategy.
 
-$ ./version.sh
+$ ./git-version
 1.0.0-beta
 
 $ git checkout main
 Switched to branch 'main'
 
-$ ./version.sh
+$ ./git-version
 1.1.0-alpha.0
 ```
 
@@ -170,32 +170,32 @@ $ ./version.sh
 $ git commit --allow-empty -m SimpleCommit3
 [main d71b172] SimpleCommit3
 
-$ ./version.sh
+$ ./git-version
 1.1.0-alpha.1
 
 $ git commit --allow-empty -m HotfixCommit1
 [main 0f751dc] HotfixCommit1
 
-$ ./version.sh
+$ ./git-version
 1.1.0-alpha.2
 
 $ git commit --allow-empty -m SimpleCommit4
 [main d86c9d9] SimpleCommit4
 
-$ ./version.sh
+$ ./git-version
 1.1.0-alpha.3
 
 $ git checkout staging
 Switched to branch 'staging'
 
-$ ./version.sh
+$ ./git-version
 1.0.0-beta
 
 $ git cherry-pick 0f751dc --allow-empty --no-edit
 [staging 074ddfd] HotfixCommit1
  Date: Mon May 3 02:05:06 2021 +0300
 
-$ ./version.sh
+$ ./git-version
 1.0.1-beta
 ```
 
@@ -205,13 +205,13 @@ $ ./version.sh
 $ git checkout production
 Switched to branch 'production'
 
-$ ./version.sh
+$ ./git-version
 0.0.0
 
 $ git merge staging --no-ff --no-edit
 Already up to date!
 Merge made by the 'recursive' strategy.
 
-$ ./version.sh
+$ ./git-version
 1.0.1
 ```

@@ -14,8 +14,10 @@ tests:
     - tags
 
   before_script:
-    - 'git config --global user.email "runner@example.com"'
-    - 'git config --global user.name "CI Runner"'
+    - 'sudo apt-get update'
+    - 'sudo apt-get install -y shunit2'
+    - 'git config --global user.email "${GITLAB_USER_EMAIL}"'
+    - 'git config --global user.name "${GITLAB_USER_NAME}"'
 
   script:
     - "./tests.sh"
