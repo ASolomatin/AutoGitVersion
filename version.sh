@@ -75,12 +75,12 @@ get_commit_branch() {
         arr_branches+=("$branch_name")
     done < <(git branch --format "%(refname:short)" --contains "$commit_hash")
 
-    if array_contains arr_branches $DEVELOPMENT_BRANCH; then
-        echo $DEVELOPMENT_BRANCH
-    elif array_contains arr_branches $STAGING_BRANCH; then
-        echo $STAGING_BRANCH
-    elif array_contains arr_branches $PRODUCTION_BRANCH; then
-        echo $PRODUCTION_BRANCH
+    if array_contains arr_branches "$DEVELOPMENT_BRANCH"; then
+        echo "$DEVELOPMENT_BRANCH"
+    elif array_contains arr_branches "$STAGING_BRANCH"; then
+        echo "$STAGING_BRANCH"
+    elif array_contains arr_branches "$PRODUCTION_BRANCH"; then
+        echo "$PRODUCTION_BRANCH"
     else
         get_current_branch
     fi
@@ -113,7 +113,7 @@ load_releases() {
                 releases["$commit_hash"]=$INCREMENT_NONE
             fi
         fi
-    done < <(git log --merges --pretty="%H %P \"%s\"" ${STAGING_BRANCH})
+    done < <(git log --merges --pretty="%H %P \"%s\"" "${STAGING_BRANCH}")
 
     while IFS= read -r merge_info; do
         local -a arr_info="($merge_info)"
@@ -126,7 +126,7 @@ load_releases() {
                 releases["$commit_hash"]=$INCREMENT_NONE
             fi
         fi
-    done < <(git log --merges --pretty="%H \"%s\"" ${PRODUCTION_BRANCH})
+    done < <(git log --merges --pretty="%H \"%s\"" "${PRODUCTION_BRANCH}")
 }
 
 try_guess_merge_target() {
