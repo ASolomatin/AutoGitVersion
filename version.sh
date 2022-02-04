@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-DEVELOPMENT_BRANCH="master"
-STAGING_BRANCH="staging"
-PRODUCTION_BRANCH="production"
+DEVELOPMENT_BRANCH=${AGV_MAIN_BRANCH-"main"}
+STAGING_BRANCH=${AGV_STAGING_BRANCH-"staging"}
+PRODUCTION_BRANCH=${AGV_STAGING_BRANCH-"production"}
 
 MERGE_BRANCH_MATCH_EXPRESSIONS=(
     "\"^Merge branch '([^']*)' into '([^']*)'\" 1 2"                            # GitLab

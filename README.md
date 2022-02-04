@@ -8,26 +8,26 @@ Just copy and use `version.sh` script inside the git directory.
 
 This script works with flow based on [GitLab flow](https://docs.gitlab.com/ee/topics/gitlab_flow.html) with some restrictions.
 
-The repository contains three main branches (*master*, *staging* and *production*) and may have feature branches.
+The repository contains three main branches (*main*, *staging* and *production*) and may have feature branches.
 
-- The *master* branch is main branch for current development; *master* branch can be merged **only** to *staging*; All feature branches can be started **only** from *master*.
-- The *staging* branch contains currently testing code (beta) and can be deployed on stage; *staging* branch can be merged **only** to master; *staging* branch **can not** contain individual commits except cherry-picked hotfixes.
+- The *main* branch is main branch for current development; *main* branch can be merged **only** to *staging*; All feature branches can be started **only** from *main*.
+- The *staging* branch contains currently testing code (beta) and can be deployed on stage; *staging* branch can be merged **only** to main; *staging* branch **can not** contain individual commits except cherry-picked hotfixes.
 - The *production* branch contains final code versions and can be deployed on production; *production* branch **can not** be merged to other branches; *production* branch **can not** contain **any** individual commits.
-- The feature branches starts, like usually, from *master* and merges back to *master*.
-- Hotfix occurs according to the following algorithm: first, fixes are committed into the *master*, then, for verification, using cherry-pick, they are duplicated into *staging*. After verification, the *staging* is merged into *production*. So, all the branches can sometimes different history but after release always has same code and always can be merged without conflicts except features.
+- The feature branches starts, like usually, from *main* and merges back to *main*.
+- Hotfix occurs according to the following algorithm: first, fixes are committed into the *main*, then, for verification, using cherry-pick, they are duplicated into *staging*. After verification, the *staging* is merged into *production*. So, all the branches can sometimes different history but after release always has same code and always can be merged without conflicts except features.
 
-Main idea of this flow is that the code always moving only in one direction from *master* through *staging* to *production* and never back.
+Main idea of this flow is that the code always moving only in one direction from *main* through *staging* to *production* and never back.
 
 ## Restrictions
 
 - All merges should be done using git **recursive** policy (`--no-ff` option). The exception is feature branches, which can be merged in any way. This is important because the fast forward strategy does not leave the merge commit as evidence of release.
 - Rebase is outlaw. Rebase can totally broke history and we will have wrong version as result.
 - All merge commits must contains standard commit message with specified source and target branch. Eg.: "Merge branch 'staging' into production". (Script supports few most popular merge message formats)
-- The *production* and *staging* branches **can not** be merged back to *master* because this will broke commits sequence and current version will lose hotfix versioning part. (And maybe something else. This case was not well tested yet.)
+- The *production* and *staging* branches **can not** be merged back to *main* because this will broke commits sequence and current version will lose hotfix versioning part. (And maybe something else. This case was not well tested yet.)
 
 ## Major version increment
 
-Major version can be incremented by adding special comment to commit message: `+semver: major`. This will work on *master* branch, feature branches and inside the merge commit from *master* to *staging*. In other cases this comment will be ignored. Major version increment works only **once** per release.
+Major version can be incremented by adding special comment to commit message: `+semver: major`. This will work on *main* branch, feature branches and inside the merge commit from *main* to *staging*. In other cases this comment will be ignored. Major version increment works only **once** per release.
 
 ## Usage example
 
@@ -41,9 +41,9 @@ HEAD is detached
 ### Init
 
 ```bash
-$ git init && git add . && git commit -m Initial && git checkout -b staging && git checkout -b production && git checkout master
+$ git init && git add . && git commit -m Initial && git checkout -b staging && git checkout -b production && git checkout main
 Initialized empty Git repository in /home/alex/Projects/DummyTests/DummyCILib/.git/
-[master (root-commit) 95c83f3] Initial
+[main (root-commit) 95c83f3] Initial
  9 files changed, 2406 insertions(+)
  create mode 100644 .gitignore
  create mode 100644 .gitlab-ci.yml
@@ -56,7 +56,7 @@ Initialized empty Git repository in /home/alex/Projects/DummyTests/DummyCILib/.g
  create mode 100755 version.sh
 Switched to a new branch 'staging'
 Switched to a new branch 'production'
-Switched to branch 'master'
+Switched to branch 'main'
 
 $ ./version.sh
 v0.1.0-alpha.1
@@ -81,11 +81,11 @@ $ ./version.sh
 ### Simple commit
 
 ```bash
-$ git checkout master
-Switched to branch 'master'
+$ git checkout main
+Switched to branch 'main'
 
 $ git commit --allow-empty -m SimpleCommit1
-[master 38b49c3] SimpleCommit1
+[main 38b49c3] SimpleCommit1
 
 $ ./version.sh
 0.1.0-alpha.2
@@ -106,14 +106,14 @@ $ git commit --allow-empty -m FeatureCommit1
 $ ./version.sh
 0.1.0-feature.DummyFeature.3
 
-$ git checkout master
-Switched to branch 'master'
+$ git checkout main
+Switched to branch 'main'
 
 $ ./version.sh
 0.1.0-alpha.2
 
 $ git commit --allow-empty -m SimpleCommit2
-[master 8c40b1a] SimpleCommit2
+[main 8c40b1a] SimpleCommit2
 
 $ ./version.sh
 0.1.0-alpha.3
@@ -133,7 +133,7 @@ $ ./version.sh
 
 ```bash
 $ git commit --allow-empty -m MajorCommit1 -m "+semver: major"
-[master e2559be] MajorCommit1
+[main e2559be] MajorCommit1
 
 $ ./version.sh
 1.0.0-alpha.0
@@ -148,15 +148,15 @@ Switched to branch 'staging'
 $ ./version.sh
 0.0.0-beta
 
-$ git merge master --no-ff --no-edit
+$ git merge main --no-ff --no-edit
 Already up to date!
 Merge made by the 'recursive' strategy.
 
 $ ./version.sh
 1.0.0-beta
 
-$ git checkout master
-Switched to branch 'master'
+$ git checkout main
+Switched to branch 'main'
 
 $ ./version.sh
 1.1.0-alpha.0
@@ -166,19 +166,19 @@ $ ./version.sh
 
 ```bash
 $ git commit --allow-empty -m SimpleCommit3
-[master d71b172] SimpleCommit3
+[main d71b172] SimpleCommit3
 
 $ ./version.sh
 1.1.0-alpha.1
 
 $ git commit --allow-empty -m HotfixCommit1
-[master 0f751dc] HotfixCommit1
+[main 0f751dc] HotfixCommit1
 
 $ ./version.sh
 1.1.0-alpha.2
 
 $ git commit --allow-empty -m SimpleCommit4
-[master d86c9d9] SimpleCommit4
+[main d86c9d9] SimpleCommit4
 
 $ ./version.sh
 1.1.0-alpha.3
