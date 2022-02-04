@@ -8,9 +8,11 @@
         "USAGE.md"
     ],
     "cSpell.words": [
+        "hotfixes",
         "nuget",
         "nupkg",
-        "semver"
+        "semver",
+        "shunit"
     ],
     "shellcheck.ignorePatterns": {
         "shunit2": true

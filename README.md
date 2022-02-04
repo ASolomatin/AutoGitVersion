@@ -13,8 +13,8 @@ The repository contains three main branches (*master*, *staging* and *production
 - The *master* branch is main branch for current development; *master* branch can be merged **only** to *staging*; All feature branches can be started **only** from *master*.
 - The *staging* branch contains currently testing code (beta) and can be deployed on stage; *staging* branch can be merged **only** to master; *staging* branch **can not** contain individual commits except cherry-picked hotfixes.
 - The *production* branch contains final code versions and can be deployed on production; *production* branch **can not** be merged to other branches; *production* branch **can not** contain **any** individual commits.
-- The feature branches starts, like usualy, from *master* and merges back to *master*.
-- Hotfix occurs according to the following algorithm: first, fixes are commited into the *master*, then, for verification, using cherry-pick, they are duplicated into *staging*. After verification, the *staging* is merged into *production*. So, all the branches can sometimes different history but after release always has same code and always can be merged without conflicts except features.
+- The feature branches starts, like usually, from *master* and merges back to *master*.
+- Hotfix occurs according to the following algorithm: first, fixes are committed into the *master*, then, for verification, using cherry-pick, they are duplicated into *staging*. After verification, the *staging* is merged into *production*. So, all the branches can sometimes different history but after release always has same code and always can be merged without conflicts except features.
 
 Main idea of this flow is that the code always moving only in one direction from *master* through *staging* to *production* and never back.
 
@@ -213,27 +213,3 @@ Merge made by the 'recursive' strategy.
 $ ./version.sh
 1.0.1
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

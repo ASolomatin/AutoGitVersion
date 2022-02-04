@@ -3,7 +3,6 @@ stages:
 
 tests:
   stage: test
-  tags: ['dev']
   only:
     - branches
     - merge_requests
@@ -17,6 +16,4 @@ tests:
     - 'git config --global user.name "CI Runner"'
 
   script:
-    - './tests.sh'
-
-#test push 3
+    - "./tests.sh"
