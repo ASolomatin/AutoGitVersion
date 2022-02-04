@@ -1,6 +1,4 @@
-image: debian:latest
-services:
-  - name: git:latest
+image: ubuntu:latest
 
 stages:
   - test
