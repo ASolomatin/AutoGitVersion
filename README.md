@@ -8,7 +8,7 @@ Just copy and use `version.sh` script inside the git directory.
 
 This script works with flow based on [GitLab flow](https://docs.gitlab.com/ee/topics/gitlab_flow.html) with some restrictions.
 
-The repository contains three main branches (*main*, *staging* and *production*) and may have feature branches.
+The repository contains three main branches (*main*, *staging* and *production*) and may have feature branches. **⃰**
 
 - The *main* branch is main branch for current development; *main* branch can be merged **only** to *staging*; All feature branches can be started **only** from *main*.
 - The *staging* branch contains currently testing code (beta) and can be deployed on stage; *staging* branch can be merged **only** to main; *staging* branch **can not** contain individual commits except cherry-picked hotfixes.
@@ -17,6 +17,8 @@ The repository contains three main branches (*main*, *staging* and *production*)
 - Hotfix occurs according to the following algorithm: first, fixes are committed into the *main*, then, for verification, using cherry-pick, they are duplicated into *staging*. After verification, the *staging* is merged into *production*. So, all the branches can sometimes different history but after release always has same code and always can be merged without conflicts except features.
 
 Main idea of this flow is that the code always moving only in one direction from *main* through *staging* to *production* and never back.
+
+*\* For backward compatibility, default branch names can be overridden by setting environment variables. `AGV_MAIN_BRANCH`, `AGV_STAGING_BRANCH` and `AGV_STAGING_BRANCH`*
 
 ## Restrictions
 
