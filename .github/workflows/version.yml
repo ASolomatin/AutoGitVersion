@@ -16,7 +16,7 @@ jobs:
           fetch-depth: '0'
 
       - name: debug echo 1
-        run: echo git status
+        run: git status
 
       - name: debug echo 2
-        run: echo git branch
+        run: git branch
