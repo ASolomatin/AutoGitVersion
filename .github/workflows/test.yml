@@ -25,4 +25,4 @@ jobs:
         run: git config --global user.email "ci@example.com" && git config --global user.name "CI Action"
 
       - name: test
-        run: ./test.sh
+        run: ./tests.sh
